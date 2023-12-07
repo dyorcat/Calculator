@@ -1,13 +1,15 @@
 package lv3
 
+import java.lang.IllegalArgumentException
+
 class Calculator {
-    fun calc(num1: Int, operator: String, num2: Int): Any {
+    fun calc(num1: Int, operator: String, num2: Int): Double {
         return when (operator) {
                 "+" -> AddOperation().operate(num1, num2)
                 "-" -> SubtractOperation().operate(num1, num2)
                 "*" -> MultiplyOperation().operate(num1, num2)
                 "/" -> DivideOperation().operate(num1, num2)
-                else -> "잘못된 연산자입니다. "
+                else -> throw IllegalArgumentException("잘못된 연산자입니다. ")
             }
         }
     }
@@ -32,9 +34,9 @@ class MultiplyOperation {
 }
 
 class DivideOperation {
-    fun operate(num1: Int, num2: Int): Any {
+    fun operate(num1: Int, num2: Int): Double {
         return if (num2 != 0) {num1.toDouble() / num2.toDouble()}
-        else {"0으로 나눌 수 없습니다. "}
+        else throw IllegalArgumentException("0으로 나눌 수 없습니다. ")
     }
 }
 
